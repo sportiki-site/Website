@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>СПОРТИКИ</title>
+<meta name="description" content="СПОРТИКИ — городской стиль, атмосфера и свои правила.">
+
+<style>
+:root {
+  --bg: #080808;
+  --panel: #111;
+  --red: #e5232b;
+  --white: #f1f0ed;
+  --muted: #929292;
+  --line: #292929;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a { color: inherit; }
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  min-height: 76px;
+  padding: 16px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  background: #080808f5;
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: 1000;
+  letter-spacing: -1.5px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.logo span { color: var(--red); }
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+nav a {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  transition: color .2s;
+}
+
+nav a:hover { color: var(--red); }
+
+.tg {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 20px;
+  background: var(--red);
+  border: 1px solid var(--red);
+  color: white;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  transition: .2s;
+}
+
+.tg:hover {
+  background: white;
+  border-color: white;
+  color: black;
+}
+
+.hero {
+  min-height: 680px;
+  padding: 90px 8%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: #080808;
+  background-image:
+    linear-gradient(
+      90deg,
+      #050505 0%,
+      #050505ed 23%,
+      #050505b0 43%,
+      #05050520 72%,
+      #05050530 100%
+    ),
+    linear-gradient(
+      0deg,
+      #080808 0%,
+      transparent 24%
+    ),
+    url("sportiki-hero.png");
+  background-position: center, center, center 38%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-bottom: 1px solid #333;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 700px;
+}
+
+.eyebrow {
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 5px;
+}
+
+h1 {
+  margin: 30px 0;
+  font-size: clamp(56px, 9.6vw, 120px);
+  line-height: .8;
+  letter-spacing: -.09em;
+  font-weight: 1000;
+}
+
+h1 span {
+  display: block;
+  color: var(--red);
+}
+
+.hero-text {
+  max-width: 390px;
+  color: #c4c4c4;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  border: 1px solid #777;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  transition: .2s;
+}
+
+.outline:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.ticker {
+  padding: 23px 6%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+  border-bottom: 1px solid var(--line);
+  color: #aaa;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.ticker span::before {
+  content: "✕";
+  color: var(--red);
+  margin-right: 9px;
+}
+
+section.content {
+  padding: 85px 7%;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 75px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 38px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: clamp(40px, 7vw, 76px);
+  line-height: .9;
+  letter-spacing: -.07em;
+}
+
+.section-heading h2 span { color: var(--red); }
+
+.section-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 45px;
+  align-items: center;
+}
+
+.about-copy h3 {
+  margin: 0 0 20px;
+  font-size: clamp(28px, 4vw, 46px);
+  line-height: 1.05;
+}
+
+.about-copy p {
+  max-width: 470px;
+  color: #aaa;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.about-image {
+  min-height: 350px;
+  border: 1px solid #333;
+  background-color: #111;
+  background-image:
+    linear-gradient(0deg, #0009, transparent 60%),
+    url("about-image.png");
+  background-position: center, 72% center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: grayscale(100%);
+  position: relative;
+}
+
+.about-image::after {
+  content: "СВОЙ СТИЛЬ. СВОИ ПРАВИЛА.";
+  position: absolute;
+  bottom: 18px;
+  left: 18px;
+  padding: 12px;
+  background: var(--red);
+  color: white;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 35px;
+}
+
+.value {
+  padding: 26px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+
+.value b {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--red);
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.value p {
+  margin: 0;
+  color: #aaa;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* Вопросы и ответы */
+
+.faq-list {
+  max-width: 100%;
+  border-top: 1px solid var(--line);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 25px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: transparent;
+  border: 0;
+  color: var(--white);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.faq-question span:first-child {
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.faq-number {
+  color: var(--red);
+  margin-right: 16px;
+}
+
+.faq-icon {
+  flex-shrink: 0;
+  color: var(--red);
+  font-size: 27px;
+  transition: transform .3s;
+}
+
+.faq-question[aria-expanded="true"] .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .3s ease;
+}
+
+.faq-answer-inner {
+  overflow: hidden;
+}
+
+.faq-answer p {
+  margin: 0;
+  padding: 0 45px 25px;
+  max-width: 850px;
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.faq-item.open .faq-answer {
+  grid-template-rows: 1fr;
+}
+
+/* Блок контактов: отдельный фон с Telegram */
+
+.contact-box {
+  padding: clamp(30px, 7vw, 75px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  border: 1px solid #333;
+  background-color: #080808;
+  background-image:
+    linear-gradient(
+      90deg,
+      #080808f5 0%,
+      #080808e8 35%,
+      #08080890 65%,
+      #08080835 100%
+    ),
+    url("telegram-contact.png");
+  background-position: center, center right;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.contact-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+}
+
+.contact-box h2 {
+  margin: 0 0 15px;
+  font-size: clamp(38px, 7vw, 75px);
+  line-height: .9;
+  letter-spacing: -.07em;
+}
+
+.contact-box h2 span { color: var(--red); }
+
+.contact-box p {
+  color: #aaa;
+  line-height: 1.8;
+}
+
+.contact-tg {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+
+.telegram-icon {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+}
+
+footer {
+  padding: 27px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: #777;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
+}
+
+footer a:hover { color: var(--red); }
+
+@media (max-width: 760px) {
+  header {
+    padding: 16px 5%;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  nav {
+    order: 3;
+    width: 100%;
+    gap: 19px;
+    overflow-x: auto;
+    padding: 5px 0;
+  }
+
+  nav a {
+    white-space: nowrap;
+    font-size: 10px;
+  }
+
+  .header-tg {
+    margin-left: auto;
+    padding: 12px;
+  }
+
+  .hero {
+    min-height: 590px;
+    padding: 75px 6%;
+    background-position: center, center, 65% center;
+  }
+
+  .hero-content { max-width: 100%; }
+  .hero-text { max-width: 300px; }
+  .ticker { line-height: 1.8; }
+  section.content { padding: 60px 6%; }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .about-image { min-height: 300px; }
+  .values { grid-template-columns: 1fr; }
+
+  .faq-question {
+    padding: 22px 0;
+  }
+
+  .faq-question span:first-child {
+    font-size: 14px;
+  }
+
+  .faq-answer p {
+    padding: 0 5px 22px;
+  }
+
+  .contact-box {
+    flex-direction: column;
+    align-items: flex-start;
+    background-position: center, 65% center;
+  }
+
+  .contact-tg {
+    white-space: normal;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  footer { padding: 25px 6%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    transition: none !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a class="logo" href="#home">
+    СПОРТИКИ<span>.</span>
+  </a>
+
+  <nav aria-label="Основная навигация">
+    <a href="#home">ГЛАВНАЯ</a>
+    <a href="#about">О НАС</a>
+    <a href="#faq">ВОПРОСЫ</a>
+    <a href="#contact">СВЯЗЬ</a>
+  </nav>
+
+  <a class="tg header-tg"
+     href="https://t.me/zakazat_sportikov6"
+     target="_blank"
+     rel="noopener noreferrer">
+    TELEGRAM
+  </a>
+</header>
+
+<main>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="eyebrow">БЫСТРО · КАЧЕСТВЕННО · НЕДОРОГО</div>
+
+      <h1>СПОРТИКИ</h1>
+
+      <p class="hero-text">
+        Своя атмосфера. Свой круг. Свои правила.
+        Без лишних вопросов — гарантированный результат
+      </p>
+
+      <div class="actions">
+        <a class="outline" href="#about">О НАС</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker">
+    <span>СВОЙ СТИЛЬ</span>
+    <span>СВОЯ АТМОСФЕРА</span>
+    <span>СВОИ ПРАВИЛА</span>
+  </div>
+
+  <section class="content" id="about">
+    <div class="section-heading">
+      <h2>О <span>НАС.</span></h2>
+      <p>МЕНЬШЕ СЛОВ — БОЛЬШЕ ХАРАКТЕРА</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-copy">
+        <h3>СВОЙ ПУТЬ.<br>СВОЯ ЭСТЕТИКА.</h3>
+
+        <p>
+          ЕСТЬ ОТЗЫВЫ. БЕЗОПАСНОСТЬ СДЕЛКИ — ПРЕЖДЕ ВСЕГО.
+
+          Предусмотрена возможность проведения сделки через гаранта.
+          Наша команда придерживается принципов дисциплины, ответственности
+          и внимательного подхода к каждому обращению. Мы стремимся обеспечить
+          прозрачность договорённостей, последовательный контроль согласованных
+          этапов и защиту интересов участников.
+
+          Конфиденциальность обращения — наш приоритет.
+          Все условия сотрудничества согласовываются заранее.
+        </p>
+
+        <a class="outline"
+           href="https://t.me/zakazat_sportikov6"
+           target="_blank"
+           rel="noopener noreferrer">
+          НАПИСАТЬ НАМ
+        </a>
+      </div>
+
+      <div class="about-image"
+           role="img"
+           aria-label="Чёрно-белый городской образ с балаклавой">
+      </div>
+    </div>
+
+    <div class="values">
+      <div class="value">
+        <b>01 / УСЛОВИЯ</b>
+        <p>Заранее обсуждаем условия сотрудничества и организационные детали.</p>
+      </div>
+
+      <div class="value">
+        <b>02 / СОГЛАСОВАНИЕ</b>
+        <p>Уточняем детали, согласовываем договорённости и подтверждаем все условия заранее.</p>
+      </div>
+
+      <div class="value">
+        <b>03 / СВЯЗЬ</b>
+        <p>Прямое общение с командой, оперативные ответы и связь без лишних переходов.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content" id="faq">
+    <div class="section-heading">
+      <h2>ВОПРОСЫ <span>/ ОТВЕТЫ.</span></h2>
+      <p>ЧЕТЫРЕ ВОПРОСА — ЧЕТЫРЕ ОТВЕТА</p>
+    </div>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span><span class="faq-number">01 /</span> Сколько стоит вызвать спортиков?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Все вопросы только в телеграмме (контакт на сайте).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span><span class="faq-number">02 /</span> Как быстро вы можете приступить к работе?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Мы работаем в режиме 24/7 и готовы принять задачу в обработку сразу после первого обращения и согласования деталей.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span><span class="faq-number">03 /</span> Как заказать спортиков?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Все вопросы задаются исключительно по указанныму контакту.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span><span class="faq-number">04 /</span> В каких городах можно вызвать спортиков?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>Все вопросы только в телеграме или по почте (контакты на сайте).</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="content" id="contact">
+    <div class="contact-box">
+      <div class="contact-copy">
+        <h2>СВЯЗАТЬСЯ <span>С НАМИ</span></h2>
+        <p>Все вопросы и сообщения — напрямую в Telegram.</p>
+      </div>
+
+      <a class="tg contact-tg"
+         href="https://t.me/zakazat_sportikov6"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="Связаться с нами в Telegram">
+        <svg class="telegram-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M21.8 4.2 18.5 20c-.25 1.12-.91 1.4-1.85.88l-5.12-3.77-2.47 2.38c-.27.27-.5.5-1.03.5l.37-5.22 9.5-8.58c.41-.37-.09-.58-.63-.21L5.53 13.34.5 11.77c-1.09-.34-1.1-1.09.23-1.6L20.4 2.6c.91-.34 1.7.22 1.4 1.6Z"/>
+        </svg>
+        @ZAKAZAT_SPORTIKOV6
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>© СПОРТИКИ 2026</span>
+  <a href="#home">НАВЕРХ ↑</a>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-question').forEach(function(button) {
+  button.addEventListener('click', function() {
+    const item = button.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+
+    item.classList.toggle('open', !isOpen);
+    button.setAttribute('aria-expanded', String(!isOpen));
+  });
+});
+</script>
+
+</body>
+</html>
